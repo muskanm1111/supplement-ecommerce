@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -13,5 +14,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [], // Remove the animation plugin if you don't need it
 };
