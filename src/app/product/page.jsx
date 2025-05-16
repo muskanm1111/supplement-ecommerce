@@ -131,9 +131,9 @@ const Page = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen"> 
       {/* Page header */}
-      <div className="bg-gradient-to-r from-orange-400 to-orange-600 py-12">
+      <div className="bg-gradient-to-r from-[#a6215c] to-[#a6215c] py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
             Gym Supplements Collection
@@ -143,20 +143,20 @@ const Page = () => {
           </p>
 
           {/* Search bar */}
-          <div className="max-w-md mx-auto mt-6">
+          {/* <div className="max-w-md mx-auto mt-6">
             <div className="relative flex items-center">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Search products..."
-                className="w-full px-4 py-3 pl-10 rounded-full border-none shadow-md focus:ring-2 focus:ring-orange-300 focus:outline-none"
+                className="w-full px-4 py-3 pl-10 rounded-full border-none shadow-md focus:ring-2 focus:ring-[#a6215c] focus:outline-none"
               />
               <div className="absolute left-3 text-gray-400">
                 <Search size={20} />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

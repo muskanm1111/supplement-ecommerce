@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import { useCart } from "@/context/cartContext";
 
 const products = [
   {
@@ -88,22 +89,26 @@ export default function ProductCarousel() {
   const autoplayRef = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
+  const { addToCart } = useCart();
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const addToCart = (productId, e) => {
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
     e.stopPropagation();
-    
-    // Implement your cart functionality here
+    setIsAddingToCart(true);
+    addToCart(product);
+    setTimeout(() => {
+      setIsAddingToCart(false);
+    }, 1000);
   };
 
   const addToWishlist = (productId, e) => {
     e.stopPropagation();
-    
     // Implement your wishlist functionality here
   };
 
   const quickView = (productId, e) => {
     e.stopPropagation();
-  
     // Implement your quick view functionality here
   };
 
@@ -140,7 +145,7 @@ export default function ProductCarousel() {
                       {product.sale && (
                         <span className="absolute top-6 left-6 bg-[#a6215c] text-white text-xs font-semibold px-2 py-1 rounded z-10">
                           SALE
-                        </span> 
+                        </span>
                       )}
 
                       <div className="absolute top-6 right-6 flex flex-col gap-2 z-10">
@@ -190,10 +195,13 @@ export default function ProductCarousel() {
                       </div>
                       <Button
                         className="w-full bg-[#a6215c] hover:bg-[#a6215c] text-white transition-colors duration-300"
-                        onClick={(e) => addToCart(product.id, e)}
+                        onClick={(e) => handleAddToCart(product, e)}
+                        whileHover={{ scale: 1.05 }}  
+                        disabled={isAddingToCart}
                       >
                         <ShoppingCart className="h-4 w-4 mr-2" />
-                        Add to Cart
+                        {isAddingToCart ? 'Adding...' : 'Add to Cart'}
+                       
                       </Button>
                     </CardContent>
                   </Card>
@@ -210,12 +218,11 @@ export default function ProductCarousel() {
         {/* See more button */}
         <div className="flex justify-center mt-12">
           <Link href="/products">
-          
             <motion.button
-                       whileHover={{ scale: 1.1 }}
-                         whileTap={{ scale: 0.9 }}
-  className="bg-[#a6215c] hover:bg-[#a6215c] text-white transition-colors duration-300 py-2 px-8 rounded-lg shadow-md flex items-center gap-2"
->
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="bg-[#a6215c] hover:bg-[#a6215c] text-white transition-colors duration-300 py-2 px-8 rounded-lg shadow-md flex items-center gap-2"
+            >
               See More Products
             </motion.button>
           </Link>

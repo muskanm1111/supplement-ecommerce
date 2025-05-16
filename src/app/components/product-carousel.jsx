@@ -259,7 +259,7 @@ export default function ProductCarousel() {
 
         {/* See more button */}
         <div className="flex justify-center mt-12">
-          <Link href="/products">
+          <Link href="/product">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

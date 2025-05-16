@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Star,
   ShoppingCart,
@@ -19,11 +19,11 @@ import {
   Share2,
 } from "lucide-react";
 import { gymSupplements } from "@/lib/data";
-import { useCart } from "@/context/cart-context";
+import { useCart } from "@/context/cartContext";
 
 const ProductDetail = ({ params }) => {
   const { slug } = params;
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const { addToCart, toggleWishlist } = useCart();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,26 +52,25 @@ const ProductDetail = ({ params }) => {
     setLoading(false);
   }, [slug]);
 
-  // Check if product is in wishlist
-  const productInWishlist = product ? isInWishlist(product.id) : false;
+ 
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-[#a6215c] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
         <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
         <p className="mb-8">
           The product you&apos;re looking for doesn&apos;t exist or has been removed.
         </p>
-        <Link href="/products">
-          <div className="inline-flex items-center px-5 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors">
+        <Link href="/product">
+          <div className="inline-flex items-center px-5 py-2 bg-[#a6215c] text-white rounded-md hover:bg-[#a6215c] transition-colors">
             <ArrowLeft size={16} className="mr-2" />
             Back to Products
           </div>
@@ -120,11 +119,11 @@ const ProductDetail = ({ params }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Breadcrumbs */}
         <nav className="flex mb-8 text-sm text-gray-500">
-          <Link href="/" className="hover:text-orange-500">
+          <Link href="/" className="hover:text-[#a6215c]">
             Home
           </Link>
           <span className="mx-2">/</span>
-          <Link href="/products" className="hover:text-orange-500">
+          <Link href="/products" className="hover:text-[#a6215c]">
             Products
           </Link>
           <span className="mx-2">/</span>
@@ -168,7 +167,7 @@ const ProductDetail = ({ params }) => {
 
               {/* Sale badge */}
               {product.sale && (
-                <span className="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
+                <span className="absolute top-4 left-4 bg-[#a6215c] text-white text-xs font-bold px-2 py-1 rounded z-10">
                   SALE
                 </span>
               )}
@@ -182,7 +181,7 @@ const ProductDetail = ({ params }) => {
                   onClick={() => setSelectedImage(i)}
                   className={`relative h-20 rounded-md overflow-hidden ${
                     selectedImage === i
-                      ? "ring-2 ring-orange-500"
+                      ? "ring-2 ring-[#a6215c]"
                       : "ring-1 ring-gray-200"
                   }`}
                 >
@@ -227,7 +226,7 @@ const ProductDetail = ({ params }) => {
 
             {/* Price */}
             <div className="mt-4 flex items-end">
-              <p className="text-2xl font-bold text-orange-500">
+              <p className="text-2xl font-bold text-[#a6215c]">
                 ₹{product.price.toLocaleString()}
               </p>
               {product.originalPrice > product.price && (
@@ -263,7 +262,7 @@ const ProductDetail = ({ params }) => {
                       className={`px-4 py-2 text-sm font-medium rounded-md transition-colors
                         ${
                           selectedSize === size
-                            ? "bg-orange-500 text-white"
+                            ? "bg-[#a6215c] text-white"
                             : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                         }`}
                     >
@@ -286,7 +285,7 @@ const ProductDetail = ({ params }) => {
                       className={`px-4 py-2 text-sm font-medium rounded-md transition-colors
                         ${
                           selectedFlavor === flavor
-                            ? "bg-orange-500 text-white"
+                            ? "bg-[#a6215c] text-white"
                             : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                         }`}
                     >
@@ -334,7 +333,7 @@ const ProductDetail = ({ params }) => {
                 className={`flex-1 py-3 px-6 rounded-md font-medium flex items-center justify-center transition-colors ${
                   isAddedToCart
                     ? "bg-green-500 text-white"
-                    : "bg-orange-500 hover:bg-orange-600 text-white"
+                    : "bg-[#a6215c] hover:bg-[#a6215c] text-white"
                 }`}
               >
                 {isAddedToCart ? (
@@ -372,15 +371,15 @@ const ProductDetail = ({ params }) => {
             <div className="mt-8 border-t border-gray-200 pt-6">
               <ul className="space-y-3">
                 <li className="flex items-center text-sm text-gray-600">
-                  <TruckIcon size={16} className="mr-2 text-orange-500" />
+                  <TruckIcon size={16} className="mr-2 text-[#a6215c]" />
                   Free shipping for orders over ₹999
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <ShieldCheck size={16} className="mr-2 text-orange-500" />
+                  <ShieldCheck size={16} className="mr-2 text-[#a6215c]" />
                   100% authentic products
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Share2 size={16} className="mr-2 text-orange-500" />
+                  <Share2 size={16} className="mr-2 text-[#a6215c]" />
                   Share with friends to earn rewards
                 </li>
               </ul>
@@ -393,7 +392,7 @@ const ProductDetail = ({ params }) => {
                   onClick={() => setActiveTab("description")}
                   className={`pb-4 px-1 text-sm font-medium ${
                     activeTab === "description"
-                      ? "text-orange-500 border-b-2 border-orange-500"
+                      ? "text-[#a6215c] border-b-2 border-[#a6215c]"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
@@ -403,7 +402,7 @@ const ProductDetail = ({ params }) => {
                   onClick={() => setActiveTab("reviews")}
                   className={`ml-8 pb-4 px-1 text-sm font-medium ${
                     activeTab === "reviews"
-                      ? "text-orange-500 border-b-2 border-orange-500"
+                      ? "text-[#a6215c] border-b-2 border-[#a6215c]"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
@@ -413,7 +412,7 @@ const ProductDetail = ({ params }) => {
                   onClick={() => setActiveTab("shipping")}
                   className={`ml-8 pb-4 px-1 text-sm font-medium ${
                     activeTab === "shipping"
-                      ? "text-orange-500 border-b-2 border-orange-500"
+                      ? "text-[#a6215c] border-b-2 border-[#a6215c]"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >

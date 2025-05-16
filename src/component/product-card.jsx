@@ -5,30 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ShoppingCart, Heart, Eye } from "lucide-react";
-
+import { useCart } from "@/context/cartContext";
 
 const ProductCard = ({ product }) => {
   const { addToCart, toggleWishlist, isInWishlist } = useCart();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const isWishlisted = isInWishlist(product.id);
 
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const { cartItems } = useCart();
 
-    // Show visual feedback
+  const { title, image, description } = product;
+
+  const handleAddToCart = () => {
     setIsAddingToCart(true);
-
-    // Add to cart with default size and flavor if available
-    const size = product.sizes.length > 0 ? product.sizes[0] : null;
-    const flavor = product.flavors.length > 0 ? product.flavors[0] : null;
-
-    addToCart(product, 1, size, flavor);
-
-    // Reset state after animation
-    setTimeout(() => {
-      setIsAddingToCart(false);
-    }, 1000);
+    addToCart(product);
+    setTimeout(() => setIsAddingToCart(false), 1000);
   };
 
   const handleToggleWishlist = (e) => {
@@ -36,16 +26,15 @@ const ProductCard = ({ product }) => {
     e.stopPropagation();
     toggleWishlist(product);
   };
-
   const handleQuickView = (e) => {
     e.preventDefault();
     e.stopPropagation();
     // In a complete implementation, this could show a modal with product details
-    console.log(`Quick view for ${product.name}`);
+    console.log("Quick view for product:", product);
   };
 
   return (
-    <Link href={`/products/${product.slug}`}>
+    <Link href={`/product/${product.id}`}>
       <motion.div
         className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col"
         whileHover={{ y: -5 }}
@@ -53,7 +42,7 @@ const ProductCard = ({ product }) => {
       >
         <div className="relative">
           {product.sale && (
-            <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
+            <span className="absolute top-2 left-2 bg-[#a6215c] text-white text-xs font-bold px-2 py-1 rounded z-10">
               SALE
             </span>
           )}
@@ -70,19 +59,15 @@ const ProductCard = ({ product }) => {
 
           <div className="absolute top-2 right-2 flex flex-col gap-2">
             <motion.button
-              className={`p-2 rounded-full shadow-md ${
-                isWishlisted
-                  ? "bg-red-50 text-red-500"
-                  : "bg-white text-orange-500 hover:bg-orange-50"
-              }`}
+              className="p-2 rounded-full shadow-md"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleToggleWishlist}
             >
-              <Heart size={18} fill={isWishlisted ? "currentColor" : "none"} />
+              <Heart size={18} />
             </motion.button>
             <motion.button
-              className="bg-white p-2 rounded-full shadow-md text-orange-500 hover:bg-orange-50"
+              className="bg-white p-2 rounded-full shadow-md text-[#a6215c] hover:bg-[#a6215c]"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleQuickView}
@@ -121,7 +106,7 @@ const ProductCard = ({ product }) => {
 
           <div className="mt-auto">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-orange-500 font-bold">
+              <span className="text-[#a6215c] font-bold">
                 ₹{product.price.toLocaleString()}
               </span>
               {product.originalPrice > product.price && (
@@ -135,11 +120,11 @@ const ProductCard = ({ product }) => {
               className={`w-full py-2 px-4 rounded flex items-center justify-center ${
                 isAddingToCart
                   ? "bg-green-500 text-white"
-                  : "bg-orange-500 hover:bg-orange-600 text-white"
+                  : "bg-[#a6215c] hover:bg-[#a6215c] text-white"
               }`}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleAddToCart} 
+              onClick={handleAddToCart}
             >
               <ShoppingCart size={16} className="mr-2" />
               {isAddingToCart ? "Added!" : "Add to Cart"}

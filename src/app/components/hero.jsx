@@ -29,7 +29,7 @@ export default function Hero() {
           </video>
 
           {/* Hero Content */}
-          <div className="relative z-20 max-w-7xl mx-auto px-4 h-screen lg:h-full flex items-center">
+          <div className="relative z-20 max-w-7xl mx-auto px-4 h-screen lg:h-full  flex items-center">
             <AnimatePresence>
               <motion.div
                 variants={{
@@ -47,7 +47,7 @@ export default function Hero() {
                 className="flex flex-col items-start space-y-6"
                 exit={{ opacity: 0, transition: { duration: 0.5 } }}
               >
-                <h1 className="text-4xl max-w-5xl  text-white   md:text-6xl Roboto lg:mt-52 font-bold leading-tight">
+                <h1 className="text-4xl max-w-5xl  text-white mt-0  lg:mt-64  md:text-6xl Roboto  font-bold leading-tight">
                   Transform Your Body With Premium Supplements
                 </h1>
                 <p className="text-gray-400 max-w-2xl">

@@ -29,7 +29,7 @@ const ProductSort = ({ sortBy, setSortBy }) => {
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-between w-full md:w-48 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
+        className="flex items-center justify-between w-full md:w-48 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#a6215c]"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -55,10 +55,9 @@ const ProductSort = ({ sortBy, setSortBy }) => {
             {sortOptions.map((option) => (
               <li
                 key={option.id}
-                onClick={() => handleSelect(option.id)}
-                className={`cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-orange-50 ${
+                onClick={() => handleSelect(option.id)}                className={`cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-[#a6215c]/10 ${
                   sortBy === option.id
-                    ? "text-orange-600 bg-orange-50"
+                    ? "text-[#a6215c] bg-[#a6215c]/10"
                     : "text-gray-900"
                 }`}
                 role="option"
@@ -67,7 +66,7 @@ const ProductSort = ({ sortBy, setSortBy }) => {
                 <span className="block truncate">{option.name}</span>
 
                 {sortBy === option.id && (
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-orange-600">
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-[#a6215c]">
                     <Check size={16} />
                   </span>
                 )}
@@ -76,8 +75,7 @@ const ProductSort = ({ sortBy, setSortBy }) => {
           </motion.ul>
         )}
       </AnimatePresence>
-    </div>
-  );
+    </div>  );
 };
 
 export default ProductSort;

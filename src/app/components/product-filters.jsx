@@ -47,7 +47,7 @@ const ProductFilters = ({
         <h2 className="text-xl font-bold">Filters</h2>
         <button
           onClick={toggleFilters}
-          className="bg-orange-500 text-white px-3 py-2 rounded-md flex items-center"
+          className="bg-[#a6215c] text-white px-3 py-2 rounded-md flex items-center"
         >
           <Filter size={18} className="mr-2" />
           {showFilters ? "Hide Filters" : "Show Filters"}
@@ -67,7 +67,7 @@ const ProductFilters = ({
           <h2 className="text-xl font-bold">Filters</h2>
           <button
             onClick={handleClearFilters}
-            className="text-sm text-orange-500 hover:text-orange-600"
+            className="text-sm text-[#a6215c] hover:text-[#a6215c]"
           >
             Clear All
           </button>
@@ -90,11 +90,11 @@ const ProductFilters = ({
                   name="category"
                   checked={selectedCategory === category.id}
                   onChange={() => handleCategoryChange(category.id)}
-                  className="w-4 h-4 text-orange-500 border-gray-300 focus:ring-orange-500"
+                  className="w-4 h-4 text-[#a6215c] border-gray-300 focus:ring-[#a6215c]"
                 />
                 <label
                   htmlFor={`category-${category.id}`}
-                  className="ml-2 text-sm text-gray-700 cursor-pointer hover:text-orange-500"
+                  className="ml-2 text-sm text-gray-700 cursor-pointer hover:text-[#a6215c]"
                 >
                   {category.name}
                 </label>
@@ -115,11 +115,11 @@ const ProductFilters = ({
                   name="brand"
                   checked={selectedBrand === brand.id}
                   onChange={() => handleBrandChange(brand.id)}
-                  className="w-4 h-4 text-orange-500 border-gray-300 focus:ring-orange-500"
+                  className="w-4 h-4 text-[#a6215c] border-gray-300 focus:ring-[#a6215c]"
                 />
                 <label
                   htmlFor={`brand-${brand.id}`}
-                  className="ml-2 text-sm text-gray-700 cursor-pointer hover:text-orange-500"
+                  className="ml-2 text-sm text-gray-700 cursor-pointer hover:text-[#a6215c]"
                 >
                   {brand.name}
                 </label>
@@ -144,7 +144,7 @@ const ProductFilters = ({
               step="100"
               value={priceRange.min}
               onChange={handlePriceChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#a6215c]"
             />
             <input
               type="range"
@@ -154,7 +154,7 @@ const ProductFilters = ({
               step="100"
               value={priceRange.max}
               onChange={handlePriceChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#a6215c]"
             />
             <div className="flex gap-2">
               <div className="relative rounded-md shadow-sm flex-1">
@@ -168,7 +168,7 @@ const ProductFilters = ({
                   onChange={handlePriceChange}
                   min="0"
                   max={priceRange.max}
-                  className="block w-full rounded-md border-gray-300 pl-7 pr-2 py-1.5 text-sm focus:border-orange-500 focus:ring-orange-500"
+                  className="block w-full rounded-md border-gray-300 pl-7 pr-2 py-1.5 text-sm focus:border-[#a6215c] focus:ring-[#a6215c]"
                 />
               </div>
               <div className="relative rounded-md shadow-sm flex-1">
@@ -182,7 +182,7 @@ const ProductFilters = ({
                   onChange={handlePriceChange}
                   min={priceRange.min}
                   max="5000"
-                  className="block w-full rounded-md border-gray-300 pl-7 pr-2 py-1.5 text-sm focus:border-orange-500 focus:ring-orange-500"
+                  className="block w-full rounded-md border-gray-300 pl-7 pr-2 py-1.5 text-sm focus:border-[#a6215c] focus:ring-[#a6215c]"
                 />
               </div>
             </div>

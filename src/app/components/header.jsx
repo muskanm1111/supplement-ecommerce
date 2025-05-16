@@ -1,50 +1,52 @@
 "use client";
 
-import {  useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from "@/context/cartContext";
+import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
+  const { cartItems } = useCart();
 
   const handleSubmenu = (category) => {
     setOpenSubmenu(openSubmenu === category ? null : category);
   };
- 
 
   const navItems = [
     {
-      title: "Ready-to-Wear",
+      title: "Proteins",
       submenu: [
-        { title: "Tops", href: "/product" },
-        { title: "Bottoms", href: "/product" },
-        { title: "Dresses", href: "/product" },
+        { title: "Whey Protein", href: "/product" },
+        { title: "Mass Gainers", href: "/product" },
+        { title: "Protein Bars", href: "/product" },
       ],
     },
     {
-      title: "Accessories",
+      title: "Performance",
       submenu: [
-        { title: "Bags", href: "/accessories/bags" },
-        { title: "Jewellery", href: "/accessories/jewellery" },
-        { title: "Shoes", href: "/accessories/shoes" },
+        { title: "Pre-Workout", href: "/product" },
+        { title: "BCAAs", href: "/product" },
+        { title: "Creatine", href: "/product" },
       ],
     },
     {
-      title: "Discover",
+      title: "Wellness",
       submenu: [
-        { title: "Our Story", href: "/discover/our-story" },
-        { title: "Sustainability", href: "/discover/sustainability" },
-        { title: "Campaigns", href: "/discover/campaigns" },
+        { title: "Vitamins", href: "/product" },
+        { title: "Fish Oil", href: "/product" },
+        { title: "Health Drinks", href: "/product" },
       ],
     },
   ];
 
   return (
     <div>
-      {/* Top banner */}
+          
       <div className="w-full  fixed top-0 z-50 bg-[#a6215c] text-right py-1 px-4 text-sm text-white">
-        Free shipping to India on all orders
+        Free shipping on orders above ₹999
       </div>
 
       {/* Navigation */}
@@ -64,7 +66,7 @@ const Header = () => {
 
                 {/* Submenu */}
                 {openSubmenu === item.title && (
-                  <ul className="absolute top-full left-0 bg-black shadow-md mt-2 py-2 w-52 z-20">
+                  <ul className="absolute top-full left-0 bg-white rounded-lg shadow-md  py-2 w-72   z-20">
                     {item.submenu.map((link) => (
                       <li key={link.title}>
                         <Link
@@ -92,7 +94,7 @@ const Header = () => {
           </div>
 
           {/* Logo (centered) */}
-          <div className="absolute left-1/2 transform -translate-x-1/2">
+          <div className="absolute left-1/2 px-6 lg:px-0 transform -translate-x-1/2">
             <Link href="/">
               <div className="font-serif text-2xl italic text-gray-800">
                 <Image src="/logo.png" alt="Logo" width={100} height={50} />
@@ -101,8 +103,8 @@ const Header = () => {
           </div>
 
           {/* Right navigation (Desktop) */}
-          <nav className="hidden md:flex space-x-6 items-center">
-            <button className="text-gray-800 hover:text-gray-600">
+          <nav className="hidden md:flex space-x-6   items-center ">
+            <button className="text-gray-800  hover:text-gray-600">
               Search
             </button>
             <button className="text-gray-800 hover:text-gray-600">
@@ -110,14 +112,18 @@ const Header = () => {
             </button>
             <button className="text-gray-800 hover:text-gray-600">
               Sign In
-            </button>
-            <button className="text-gray-800 hover:text-gray-600">Bag</button>
+            </button>{" "}
+            <Link href="/cart" className="text-gray-800 hover:text-gray-600">
+              Cart {cartItems?.length > 0 && `(${cartItems.length})`}
+            </Link>
           </nav>
 
           {/* Right icons (Mobile) */}
-          <div className="flex md:hidden space-x-2 lg:space-x-4">
-            <button className="text-gray-800">Search</button>
-            <button className="text-gray-800">Bag</button>
+          <div className="flex md:hidden items-center space-x-0 lg:space-x-6">
+            {/* <FaSearch className="text-gray-800 ">Search</FaSearch> */}
+            <Link href="/cart" className="text-gray-800 ">
+              Cart {cartItems?.length > 0 && `(${cartItems.length})`}
+            </Link>
           </div>
         </div>
 
@@ -153,7 +159,13 @@ const Header = () => {
             <div className="pt-4 border-t space-y-2">
               <button className="block text-gray-800">Customer Care</button>
               <button className="block text-gray-800">Sign In</button>
-              <button className="block text-gray-800">Bag</button>
+
+              <button className="block text-gray-800">
+                {" "}
+                Bag
+                {cartItems.length > 0 && `(${cartItems.length})`}
+              </button>
+              <FaSearch className="text-gray-800 ">Search</FaSearch>
             </div>
           </div>
         )}

@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
       >
         <div className="relative">
           {product.sale && (
-            <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
+            <span className="absolute top-2 left-2 bg-[#a6215c] text-white text-xs font-bold px-2 py-1 rounded z-10">
               SALE
             </span>
           )}
@@ -85,7 +85,7 @@ const ProductCard = ({ product }) => {
 
           <div className="mt-auto">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-orange-500 font-bold">
+              <span className="text-[#a6215c] font-bold">
                 ₹{product.price.toLocaleString()}
               </span>
               {product.originalPrice > product.price && (
@@ -99,7 +99,7 @@ const ProductCard = ({ product }) => {
               className={`w-full py-2 px-4 rounded flex items-center justify-center ${
                 isAddingToCart
                   ? "bg-green-500 text-white"
-                  : "bg-orange-500 hover:bg-orange-600 text-white"
+                  : "bg-[#a6215c] hover:bg-[#a6215c] text-white"
               }`}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
