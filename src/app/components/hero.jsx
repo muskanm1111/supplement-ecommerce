@@ -7,6 +7,7 @@ import Footer from "./footer";
 import Faq from "./faq";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
  
@@ -55,12 +56,12 @@ export default function Hero() {
                   supplements. Quality ingredients for maximum results.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <button className="bg-[#a6215c] hover:bg-[#f5f5f5] text-white hover:text-black px-8 py-3 rounded-full transition duration-300 transform hover:scale-105">
+                  <Link href="/product" className="bg-[#a6215c] hover:bg-[#f5f5f5] text-white hover:text-black px-8 py-3 rounded-full transition duration-300 transform hover:scale-105">
                     Shop Now
-                  </button>
-                  <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-300">
+                  </Link>
+                  <Link href="/product" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-300">
                     View Products
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
               <div className="max-w-5xl space-y-6 text-white"></div>
