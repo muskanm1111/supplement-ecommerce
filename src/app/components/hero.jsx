@@ -1,14 +1,19 @@
 
-import Image from "next/image";
+"use client";
+import ProductCarousel from "./product-carousel";
+import CategoriesSection from "./catgories-section";
+import FeatureBanner from "./feature-banner";
+import Footer from "./footer";
+import Faq from "./faq";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Hero() {
  
 
-   
-
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-   {/* New Hero Section */}
+      {/* New Hero Section */}
       <main className="flex-grow">
         <div className="relative w-full min-h-[calc(100vh-120px)]">
           {/* Hero Background with Overlay */}
@@ -24,135 +29,194 @@ export default function Hero() {
           </video>
 
           {/* Hero Content */}
-          <div className="relative z-20 max-w-7xl mx-auto px-4 h-full flex items-center">
-            <div className="max-w-5xl space-y-6 text-white">
-              <h1 className="text-4xl md:text-6xl  mt-16 lg:mt-52 font-bold leading-tight">
-                Transform Your Body With Premium Supplements
-              </h1>
-              <p className="text-lg md:text-xl text-gray-200">
-                Fuel your workout with our scientifically formulated
-                supplements. Quality ingredients for maximum results.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button className="bg-[#a6215c] hover:bg-[#f5f5f5] text-white hover:text-black px-8 py-3 rounded-full transition duration-300 transform hover:scale-105">
-                  Shop Now
-                </button>
-                <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-300">
-                  View Products
-                </button>
-              </div>
-            </div>
+          <div className="relative z-20 max-w-7xl mx-auto px-4 h-screen lg:h-full flex items-center">
+            <AnimatePresence>
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.2,
+                      delayChildren: 0.1,
+                    },
+                  },
+                }}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col items-start space-y-6"
+                exit={{ opacity: 0, transition: { duration: 0.5 } }}
+              >
+                <h1 className="text-4xl max-w-5xl  text-white   md:text-6xl Roboto lg:mt-52 font-bold leading-tight">
+                  Transform Your Body With Premium Supplements
+                </h1>
+                <p className="text-gray-400 max-w-2xl">
+                  Fuel your workout with our scientifically formulated
+                  supplements. Quality ingredients for maximum results.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <button className="bg-[#a6215c] hover:bg-[#f5f5f5] text-white hover:text-black px-8 py-3 rounded-full transition duration-300 transform hover:scale-105">
+                    Shop Now
+                  </button>
+                  <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-300">
+                    View Products
+                  </button>
+                </div>
+              </motion.div>
+              <div className="max-w-5xl space-y-6 text-white"></div>
+            </AnimatePresence>
           </div>
         </div>
 
-        {/* Featured Products Section */}
-        <section className="py-16 bg-red-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Best Selling Products
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Product Card 1 */}
-              <div className="group">
-                <div className="relative overflow-hidden rounded-lg">
-                  <Image
-                    src="/whey-protein.jpg"
-                    alt="Whey Protein"
-                    width={300}
-                    height={400}
-                    className="w-full object-cover transform group-hover:scale-105 transition duration-300"
-                  />
-                  <div className="absolute top-2 right-2 bg-[#a6215c] text-white px-3 py-1 rounded-full text-sm">
-                    Best Seller
-                  </div>
-                </div>
-                <div className="mt-4 space-y-2">
-                  <h3 className="text-xl font-semibold">
-                    Premium Whey Protein
-                  </h3>
-                  <p className="text-gray-600">High-quality protein powder</p>
-                  <p className="text-xl font-bold">$49.99</p>
-                  <button className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-              {/* Add more product cards similarly */}
-            </div>
-          </div>
-        </section>
-
         {/* Categories Section */}
-        <section className="py-16 bg-red-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Shop by Category
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Category Card 1 */}
-              <div className="relative rounded-xl overflow-hidden group cursor-pointer">
-                <Image
-                  src="/proteins.jpg"
-                  alt="Proteins"
-                  width={400}
-                  height={300}
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-300"
-                />
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <h3 className="text-white text-2xl font-bold">Proteins</h3>
-                </div>
-              </div>
-              {/* Add more category cards */}
-            </div>
-          </div>
-        </section>
+        <CategoriesSection />
+
+        {/* Featured Products Section */}
+        <ProductCarousel />
 
         {/* Benefits Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div className="p-6 space-y-4">
-                <div className="text-4xl mb-4">💪</div>
-                <h3 className="text-xl font-bold">Premium Quality</h3>
-                <p className="text-gray-600">
-                  All our supplements are made with the highest quality
-                  ingredients
-                </p>
+
+        <FeatureBanner />
+        <section className="py-16 bg-white ">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-[#a6215c] text-sm font-semibold tracking-wider uppercase mb-2 block">
+                Premium Quality
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-4">
+                Why Choose Us?
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                We are committed to providing the highest quality supplements
+                that are scientifically formulated to help you achieve your
+                fitness goals. Our products are made with premium ingredients
+                and undergo rigorous testing to ensure safety and efficacy.
+              </p>
+              <div className="h-1 w-48 bg-[#a6215c] mx-auto mt-6"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Quality Assurance Card */}
+              <div className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 text-[#a6215c]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">
+                    Premium Quality
+                  </h3>
+                  <p className="text-gray-600">
+                    All our supplements are manufactured in FDA-registered
+                    facilities with strict quality control standards.
+                  </p>
+                </div>
               </div>
-              {/* Add more benefit cards */}
+
+              {/* Expert Support Card */}
+              <div className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 text-[#a6215c]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">
+                    Expert Support
+                  </h3>
+                  <p className="text-gray-600">
+                    Our certified nutrition experts are available 24/7 to help
+                    you achieve your fitness goals.
+                  </p>
+                </div>
+              </div>
+
+              {/* Fast Delivery Card */}
+              <div className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 text-[#a6215c]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">
+                    Fast Delivery
+                  </h3>
+                  <p className="text-gray-600">
+                    Free shipping on orders over $50. Quick delivery to keep
+                    your fitness journey on track.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
 
-        {/* Newsletter Section */}
-        <section className="py-16 bg-black text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">
-              Get 10% Off Your First Order
-            </h2>
-            <p className="mb-8">
-              Subscribe to our newsletter for exclusive offers and fitness tips
-            </p>
-            <form className="max-w-md mx-auto flex gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-black"
-              />
-              <button className="bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 transition">
-                Subscribe
-              </button>
-            </form>
+          {/* Stats Section with updated colors */}
+          <div className="mt-16 bg-[#a6215c] py-12 rounded-2xl max-w-7xl md:mx-auto mx-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8  ">
+              <div className="text-center text-white group hover:scale-105 transition-transform duration-300">
+                <div className="text-4xl font-bold mb-2 group-hover:animate-pulse">
+                  50K+
+                </div>
+                <div className="text-pink-100">Happy Customers</div>
+              </div>
+              <div className="text-center text-white group hover:scale-105 transition-transform duration-300">
+                <div className="text-4xl font-bold mb-2 group-hover:animate-pulse">
+                  100+
+                </div>
+                <div className="text-pink-100">Products</div>
+              </div>
+              <div className="text-center text-white group hover:scale-105 transition-transform duration-300">
+                <div className="text-4xl font-bold mb-2 group-hover:animate-pulse">
+                  99%
+                </div>
+                <div className="text-pink-100">Satisfaction Rate</div>
+              </div>
+              <div className="text-center text-white group hover:scale-105 transition-transform duration-300">
+                <div className="text-4xl font-bold mb-2 group-hover:animate-pulse">
+                  24/7
+                </div>
+                <div className="text-pink-100">Support</div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Add footer content */}
-        </div>
-      </footer>
+      <Faq />
+      <Footer />
     </div>
   );
 }

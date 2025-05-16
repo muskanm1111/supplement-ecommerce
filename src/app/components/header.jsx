@@ -17,9 +17,9 @@ const Header = () => {
     {
       title: "Ready-to-Wear",
       submenu: [
-        { title: "Tops", href: "/ready-to-wear/tops" },
-        { title: "Bottoms", href: "/ready-to-wear/bottoms" },
-        { title: "Dresses", href: "/ready-to-wear/dresses" },
+        { title: "Tops", href: "/product" },
+        { title: "Bottoms", href: "/product" },
+        { title: "Dresses", href: "/product" },
       ],
     },
     {
@@ -43,12 +43,12 @@ const Header = () => {
   return (
     <div>
       {/* Top banner */}
-      <div className="w-full bg-[#a6215c] text-right py-1 px-4 text-sm text-white">
+      <div className="w-full  fixed top-0 z-50 bg-[#a6215c] text-right py-1 px-4 text-sm text-white">
         Free shipping to India on all orders
       </div>
 
       {/* Navigation */}
-      <header  className="w-full bg-white border-b border-gray-200 relative">
+      <header className="w-full bg-white border-b  fixed top-7 z-40  border-gray-200 ">
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center py-4 relative">
           {/* Left navigation (Desktop) */}
           <nav className="hidden md:flex space-x-6">
@@ -57,7 +57,6 @@ const Header = () => {
                 key={item.title}
                 className="relative group"
                 onMouseEnter={() => handleSubmenu(item.title)}
-                
               >
                 <button className="text-gray-800 hover:text-gray-600">
                   {item.title}
@@ -65,7 +64,7 @@ const Header = () => {
 
                 {/* Submenu */}
                 {openSubmenu === item.title && (
-                  <ul className="absolute top-full left-0 bg-white shadow-md mt-2 py-2 w-52 z-20">
+                  <ul className="absolute top-full left-0 bg-black shadow-md mt-2 py-2 w-52 z-20">
                     {item.submenu.map((link) => (
                       <li key={link.title}>
                         <Link
@@ -76,7 +75,7 @@ const Header = () => {
                         </Link>
                       </li>
                     ))}
-                  </ul>   
+                  </ul>
                 )}
               </div>
             ))}
@@ -116,7 +115,7 @@ const Header = () => {
           </nav>
 
           {/* Right icons (Mobile) */}
-          <div className="flex md:hidden space-x-4">
+          <div className="flex md:hidden space-x-2 lg:space-x-4">
             <button className="text-gray-800">Search</button>
             <button className="text-gray-800">Bag</button>
           </div>
