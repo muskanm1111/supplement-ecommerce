@@ -6,10 +6,10 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   //  add to cart function
   const addToCart = (item) => {
-    console.log('CartContext: Current cart items:', cartItems);
-    console.log('CartContext: Adding item:', item);
+    // console.log('CartContext: Current cart items:', cartItems);
+    // console.log('CartContext: Adding item:', item);
     setCartItems([...cartItems, item]);
-    console.log('CartContext: New cart items:', [...cartItems, item]);
+    // console.log('CartContext: New cart items:', [...cartItems, item]);
   };
 
   //  remove from cart function
