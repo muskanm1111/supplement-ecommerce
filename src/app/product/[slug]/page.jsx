@@ -352,18 +352,15 @@ const ProductDetail = ({ params }) => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={handleToggleWishlist}
-                className={`py-3 px-6 rounded-md font-medium flex items-center justify-center ${
-                  productInWishlist
-                    ? "bg-red-50 text-red-500 border border-red-200"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-800"
-                }`}
+              
+                className="py-3 px-6 rounded-md font-medium flex items-center justify-center "
+              
               >
                 <Heart
                   size={18}
-                  className={`mr-2 ${productInWishlist ? "fill-red-500" : ""}`}
+                  className="mr-2 "
                 />
-                {productInWishlist ? "In Wishlist" : "Add to Wishlist"}
+               
               </motion.button>
             </div>
 

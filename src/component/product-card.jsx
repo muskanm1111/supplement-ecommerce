@@ -11,11 +11,9 @@ const ProductCard = ({ product }) => {
   const { addToCart, toggleWishlist, isInWishlist } = useCart();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const { cartItems } = useCart();
-
-  const { title, image, description } = product;
-
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsAddingToCart(true);
     addToCart(product);
     setTimeout(() => setIsAddingToCart(false), 1000);
@@ -26,15 +24,9 @@ const ProductCard = ({ product }) => {
     e.stopPropagation();
     toggleWishlist(product);
   };
-  const handleQuickView = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // In a complete implementation, this could show a modal with product details
-    console.log("Quick view for product:", product);
-  };
 
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/product/${product.slug}`}>
       <motion.div
         className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col"
         whileHover={{ y: -5 }}
@@ -59,20 +51,12 @@ const ProductCard = ({ product }) => {
 
           <div className="absolute top-2 right-2 flex flex-col gap-2">
             <motion.button
-              className="p-2 rounded-full shadow-md"
+              className="bg-white p-2 rounded-full shadow-md text-[#a6215c] hover:bg-[#a6215c] hover:text-white"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleToggleWishlist}
             >
               <Heart size={18} />
-            </motion.button>
-            <motion.button
-              className="bg-white p-2 rounded-full shadow-md text-[#a6215c] hover:bg-[#a6215c]"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={handleQuickView}
-            >
-              <Eye size={18} />
             </motion.button>
           </div>
         </div>

@@ -160,11 +160,11 @@ const Header = () => {
               <button className="block text-gray-800">Customer Care</button>
               <button className="block text-gray-800">Sign In</button>
 
-              <button className="block text-gray-800">
+              <Link href="/cart" className="block text-gray-800">
                 {" "}
-                Bag
+                Cart
                 {cartItems.length > 0 && `(${cartItems.length})`}
-              </button>
+              </Link>
               <FaSearch className="text-gray-800 ">Search</FaSearch>
             </div>
           </div>
